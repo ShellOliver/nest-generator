@@ -1,23 +1,26 @@
 {
-  "name": "nestjs-generator",
-  "version": " 1.0",
-  "description": "Script to Autogenerate A module with default files. Based on https://github.com/bipin000/nestjs-generator",
+  "name": "nest-generator",
+  "version": " 2.0",
+  "description": "Script to Autogenerate A module with default files and a crud api. Based on https://github.com/bipin000/nestjs-generator and https://github.com/zMotivat0r/nest-crud/",
   "main": "bin/nestjs-generator.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "bin": {
-    "nestjs-generator": "bin/nestjs-generator.js"
+    "nestg": "bin/nestjs-generator.js"
+  },
+  "bugs": {
+    "url": "https://github.com/ShellOliver/nest-generator/issues",
+    "email": "shelldroid01@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ShellOliver/nest-generator.git"
   },
   "author": "Sheldon Santos",
   "license": "ISC",
   "preferGlobal": true,
   "keywords": [
-    "NestJs"
-  ],
-  "dependencies": {
-    "@nestjs/typeorm": "^3.0.0",
-    "@nestjsx/crud": "^0.1.5",
-    "typeorm": "^0.2.6"
-  }
+    "NestJs, generator"
+  ]
 }

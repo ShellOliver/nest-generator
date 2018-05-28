@@ -22,7 +22,7 @@ $ node bin/nestjs-generator module myModuleName <options>
 ```
 
 ## Options:
---c: create crud api with @nestjsx/crud 
+-c: create crud api with @nestjsx/crud 
 
 
 ## API Methods and Endpoints

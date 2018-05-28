@@ -59,7 +59,7 @@ ${crud.controllerImport}
 
 @Controller('${moduleNameLower}')
 export class ${moduleNameUpper}Controller ${crud.controllerExtend}{
-    constructor(private readonly ${moduleNameLower}Service: ${moduleNameUpper}Service) { 
+    constructor(private readonly ${moduleNameLower}Service: ${moduleNameUpper}Service) {
         ${crud.controllerSuper}
     }
 }
@@ -71,11 +71,11 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ${moduleNameUpper}Service } from './${moduleNameFiles}.service';
 import { ${moduleNameUpper}Controller } from './${moduleNameFiles}.controller';
 import { ${moduleNameUpper} } from './${moduleNameFiles}.entity';
-    
+
 @Module({
   imports: [TypeOrmModule.forFeature([${moduleNameUpper}])],
-  components: [${moduleNameUpper}Service],
-  controllers: [${moduleNameUpper}Controller]
+  providers: [${moduleNameUpper}Service],
+  controllers: [${moduleNameUpper}Controller],
 })
 export class ${moduleNameUpper}Module { }
 `;
@@ -89,13 +89,13 @@ export class ${moduleNameUpper} {
 }
 `;
 
-            let serviceString = `import { Component } from '@nestjs/common';
+            let serviceString = `import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ${moduleNameUpper} } from './${moduleNameFiles}.entity';
 import { Repository } from 'typeorm/repository/Repository';
 ${crud.serviceImport}
 
-@Component()
+@Injectable()
 export class ${moduleNameUpper}Service ${crud.serviceExtend}{
   constructor(
     @InjectRepository(${moduleNameUpper})
