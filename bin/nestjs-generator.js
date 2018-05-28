@@ -8,7 +8,9 @@ Invalid Command
         module
 
     Example:
-    nestjs-generator module testModule
+    nestg module testModule
+    nestg module testModule -c (with a crud)
+
 
 `;
 
@@ -44,15 +46,24 @@ const setCrud = (param) => {
             controllerSuper: `super(${moduleNameLower}Service);`,
             serviceSuper: `super(${moduleNameLower}Repository);`
         }
+    } else {
+        return {
+            serviceExtend: '',
+            serviceImport: '',
+            controllerExtend: '',
+            controllerImport: '',
+            controllerSuper: '',
+            serviceSuper: ''
+        }
     }
 }
 
-    switch (option) {
-        case "module":
-            const crud = setCrud(ifCrud);
-            fs.mkdir(moduleNameFiles, (err) => console.log(err));
+switch (option) {
+    case "module":
+        const crud = setCrud(ifCrud);
+        fs.mkdir(moduleNameFiles, (err) => console.log(err));
 
-            let controllerString = `import { Controller, Post, Body } from '@nestjs/common';
+        let controllerString = `import { Controller, Post, Body } from '@nestjs/common';
 import { ${moduleNameUpper} } from './${moduleNameFiles}.entity';
 import { ${moduleNameUpper}Service } from './${moduleNameFiles}.service';
 ${crud.controllerImport}
@@ -66,7 +77,7 @@ export class ${moduleNameUpper}Controller ${crud.controllerExtend}{
 `;
 
 
-            let moduleString = `import { Module } from '@nestjs/common';
+        let moduleString = `import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ${moduleNameUpper}Service } from './${moduleNameFiles}.service';
 import { ${moduleNameUpper}Controller } from './${moduleNameFiles}.controller';
@@ -80,7 +91,7 @@ import { ${moduleNameUpper} } from './${moduleNameFiles}.entity';
 export class ${moduleNameUpper}Module { }
 `;
 
-            let entityString = `import {Entity, PrimaryGeneratedColumn} from 'typeorm';
+        let entityString = `import {Entity, PrimaryGeneratedColumn} from 'typeorm';
 
 @Entity()
 export class ${moduleNameUpper} {
@@ -89,7 +100,7 @@ export class ${moduleNameUpper} {
 }
 `;
 
-            let serviceString = `import { Injectable } from '@nestjs/common';
+        let serviceString = `import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ${moduleNameUpper} } from './${moduleNameFiles}.entity';
 import { Repository } from 'typeorm/repository/Repository';
@@ -103,31 +114,31 @@ export class ${moduleNameUpper}Service ${crud.serviceExtend}{
   ) { ${crud.serviceSuper} }
 }
 `;
-            let controllerFile = `${moduleNameFiles}/${moduleNameFiles}.controller.ts`;
-            let entityFile = `${moduleNameFiles}/${moduleNameFiles}.entity.ts`;
-            let serviceFile = `${moduleNameFiles}/${moduleNameFiles}.service.ts`;
-            let moduleFile = `${moduleNameFiles}/${moduleNameFiles}.module.ts`;
+        let controllerFile = `${moduleNameFiles}/${moduleNameFiles}.controller.ts`;
+        let entityFile = `${moduleNameFiles}/${moduleNameFiles}.entity.ts`;
+        let serviceFile = `${moduleNameFiles}/${moduleNameFiles}.service.ts`;
+        let moduleFile = `${moduleNameFiles}/${moduleNameFiles}.module.ts`;
 
-            fs.writeFile(controllerFile, controllerString, (err) => {
-                if (err) throw err;
-                console.log('...generated controller...')
-            })
-            fs.writeFile(entityFile, entityString, (err) => {
-                if (err) throw err;
-                console.log('...generated entity...')
-            })
-            fs.writeFile(serviceFile, serviceString, (err) => {
-                if (err) throw err;
-                console.log('...generated service...')
-            })
-            fs.writeFile(moduleFile, moduleString, (err) => {
-                if (err) throw err;
-                console.log('...generated module...')
-            })
+        fs.writeFile(controllerFile, controllerString, (err) => {
+            if (err) throw err;
+            console.log('...generated controller...')
+        })
+        fs.writeFile(entityFile, entityString, (err) => {
+            if (err) throw err;
+            console.log('...generated entity...')
+        })
+        fs.writeFile(serviceFile, serviceString, (err) => {
+            if (err) throw err;
+            console.log('...generated service...')
+        })
+        fs.writeFile(moduleFile, moduleString, (err) => {
+            if (err) throw err;
+            console.log('...generated module...')
+        })
 
-            break;
-        default:
-            console.log(options)
-            process.exit(1);
-            break;
-    }
+        break;
+    default:
+        console.log(options)
+        process.exit(1);
+        break;
+}

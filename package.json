@@ -1,6 +1,6 @@
 {
-  "name": "nest-generator",
-  "version": " 2.0",
+  "name": "nestg",
+  "version": "0.2.0",
   "description": "Script to Autogenerate A module with default files and a crud api. Based on https://github.com/bipin000/nestjs-generator and https://github.com/zMotivat0r/nest-crud/",
   "main": "bin/nestjs-generator.js",
   "scripts": {

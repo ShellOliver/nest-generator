@@ -1,18 +1,18 @@
-# nestjs-generator v2.0.0
+# nest-generator v0.2.0
 
-The [nestjs-generator](https://nestjs.com) generated modules for you NestJS Application
+The [nest-generator](https://nestjs.com) generated modules for you NestJS Application
 Based on https://github.com/bipin000/nestjs-generator and https://github.com/zMotivat0r/nest-crud/
 
 ## Installation
 
-Using nestjs-generator:
+Using nest-generator:
 ```shell
-$ npm install
+$ npm install nestg -g
 ```
 
 ## Usage:
 ```shell
-$ node bin/nestjs-generator module myModuleName <options>
+$ nestg module myModuleName <options>
 
 ...generated controller...
 ...generated entity...
@@ -22,7 +22,7 @@ $ node bin/nestjs-generator module myModuleName <options>
 ```
 
 ## Options:
--c: create crud api with @nestjsx/crud 
+-c: create crud api with @nestjsx/crud (need install it before: npm i @nestjsx/crud --save)
 
 
 ## API Methods and Endpoints
